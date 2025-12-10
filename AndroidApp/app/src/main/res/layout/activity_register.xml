@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <!-- Username -->
+    <!-- Register username -->
     <EditText
         android:id="@+id/registerUsername"
         android:layout_width="0dp"
@@ -73,31 +73,31 @@
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/register"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintTop_toBottomOf="@id/registerPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Register Button -->
     <Button
-        android:id="@+id/register"
+        android:id="@+id/registerButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Register"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toTopOf="@+id/gotToLogin"
         app:layout_constraintTop_toBottomOf="@id/registerConfirmPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Go to Login Page Button -->
     <Button
-        android:id="@+id/login"
+        android:id="@+id/gotToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Already have an account? Login"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register"
+        app:layout_constraintTop_toBottomOf="@id/registerButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
