@@ -122,6 +122,21 @@ public class AWSCognitoService {
         }
     }
 
+    /**
+     * Changes the password for the currently logged in user
+     */
+    public void changePassword(String oldUserPassword, String newUserPassword, GenericHandler handler) {
+
+        CognitoUser currentUser = getCurrentUser();
+        if (currentUser != null) {
+            currentUser.changePasswordInBackground(oldUserPassword, newUserPassword, handler);
+        } else {
+            handler.onFailure(new Exception("No current user"));
+        }
+    }
+
+
+
     public CognitoUser getCurrentUser() {
         return userPool.getCurrentUser();
     }

@@ -23,6 +23,8 @@ public class SettingsViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> is2FAEnabled = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isBiometricEnabled = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isDarkMode = new MutableLiveData<>(false);
+
+    private final MutableLiveData<Boolean> isChangePass = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> navigateToLogin = new MutableLiveData<>(false);
     private final AWSCognitoService cognitoService;
 
@@ -32,6 +34,7 @@ public class SettingsViewModel extends AndroidViewModel {
         is2FAEnabled.setValue(prefs.getBoolean("2fa_enabled", false));
         isDarkMode.setValue(prefs.getBoolean("dark_mode", false));
         isBiometricEnabled.setValue(prefs.getBoolean("biometric_lock", false));
+        isChangePass.setValue(prefs.getBoolean("change_pass", false));
         cognitoService = new AWSCognitoService(application.getApplicationContext());
         
         fetchUserDetails();
@@ -72,6 +75,11 @@ public class SettingsViewModel extends AndroidViewModel {
         return isBiometricEnabled;
     }
 
+    public LiveData<Boolean> getIsChangePass() {
+        return isChangePass;
+    }
+
+
     public LiveData<Boolean> getIsDarkMode() {
         return isDarkMode;
     }
@@ -89,6 +97,10 @@ public class SettingsViewModel extends AndroidViewModel {
     public void setDarkMode(boolean enabled) {
         isDarkMode.setValue(enabled);
         prefs.edit().putBoolean("dark_mode", enabled).apply();
+    }
+
+    public void setChangePass(boolean enabled) {
+        isChangePass.setValue(enabled);
     }
 
     public LiveData<Boolean> getNavigateToLogin() {

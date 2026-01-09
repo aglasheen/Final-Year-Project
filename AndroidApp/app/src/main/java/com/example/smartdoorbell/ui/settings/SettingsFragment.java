@@ -34,8 +34,6 @@ public class SettingsFragment extends Fragment {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         executor = ContextCompat.getMainExecutor(requireContext());
 
-
-
         setupObservers();
         setupListeners();
 
@@ -83,9 +81,9 @@ public class SettingsFragment extends Fragment {
 
     private void setupListeners() {
         binding.switchBiometric.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked && !settingsViewModel.getIsBiometricEnabled().getValue()) {
+            if (isChecked && !Boolean.TRUE.equals(settingsViewModel.getIsBiometricEnabled().getValue())) {
                 checkAndEnableBiometrics();
-            } else if (!isChecked && settingsViewModel.getIsBiometricEnabled().getValue()) {
+            } else if (!isChecked && Boolean.TRUE.equals(settingsViewModel.getIsBiometricEnabled().getValue())) {
                 settingsViewModel.setBiometricEnabled(false);
             }
         });
@@ -97,14 +95,17 @@ public class SettingsFragment extends Fragment {
                     AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
         });
 
-        binding.btnLogout.setOnClickListener(v -> {
-            settingsViewModel.logout();
-            Toast.makeText(getContext(), "Logging out...", Toast.LENGTH_SHORT).show();
+        binding.changePasswordButton.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_change_password);
         });
-
 
         binding.onboardDeviceButton.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.navigation_onboarding);
+        });
+
+        binding.btnLogout.setOnClickListener(v -> {
+            settingsViewModel.logout();
+            Toast.makeText(getContext(), "Logging out...", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -155,7 +156,6 @@ public class SettingsFragment extends Fragment {
                     @Override
                     public void onAuthenticationFailed() {
                         super.onAuthenticationFailed();
-                        // This is called for unrecognized prints, don't toggle off yet
                     }
                 });
 

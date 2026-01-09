@@ -26,4 +26,9 @@
         android:id="@+id/navigation_onboarding"
         android:name="com.example.smartdoorbell.ui.onboarding.OnboardingFragment"
         android:label="Onboarding" />
+
+    <fragment
+        android:id="@+id/navigation_change_password"
+        android:name="com.example.smartdoorbell.ui.settings.ChangePasswordFragment"
+        android:label="Change Password" />
 </navigation>
