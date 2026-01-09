@@ -14,6 +14,16 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Load local.properties
+        Properties props = new Properties()
+        File propsFile = project.rootProject.file('local.properties')
+        if (propsFile.exists()) {
+            props.load(propsFile.newDataInputStream())
+        }
+
+        buildConfigField "String", "COGNITO_USER_POOL_ID", "\"${props.getProperty('COGNITO_USER_POOL_ID')}\""
+        buildConfigField "String", "COGNITO_CLIENT_ID", "\"${props.getProperty('COGNITO_CLIENT_ID')}\""
     }
 
     buildTypes {
@@ -28,11 +38,11 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 }
 
 dependencies {
-
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout
@@ -44,4 +54,14 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    // AWS SDKs
+    implementation libs.aws.android.sdk.cognitoidentityprovider
+    implementation libs.aws.android.sdk.core
+    implementation libs.aws.android.sdk.mobile.client
+
+    implementation libs.core.splashscreen
+
+    // Biometric library
+    implementation libs.biometric
 }

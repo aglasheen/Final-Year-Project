@@ -1,13 +1,15 @@
 package com.example.smartdoorbell;
 
 import android.os.Bundle;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+/*
+ * This class is used to onboard the IoT device onto the local Wi-Fi network
+ */
 public class OnboardingActivity extends AppCompatActivity {
 
     @Override
