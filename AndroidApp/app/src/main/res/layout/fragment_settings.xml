@@ -77,6 +77,15 @@
             android:text="Dark Mode"
             android:textAppearance="?attr/textAppearanceSubtitle1" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/onboardDeviceButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Add New Device"
+            app:icon="@android:drawable/ic_menu_add" />
+
         <!-- Spacer to push subsequent items to the bottom -->
         <View
             android:layout_width="match_parent"

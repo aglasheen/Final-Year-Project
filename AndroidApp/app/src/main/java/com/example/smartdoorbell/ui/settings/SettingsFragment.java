@@ -14,8 +14,10 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.smartdoorbell.LoginActivity;
+import com.example.smartdoorbell.R;
 import com.example.smartdoorbell.databinding.FragmentSettingsBinding;
 
 import java.util.concurrent.Executor;
@@ -31,7 +33,9 @@ public class SettingsFragment extends Fragment {
         settingsViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         executor = ContextCompat.getMainExecutor(requireContext());
-        
+
+
+
         setupObservers();
         setupListeners();
 
@@ -96,6 +100,11 @@ public class SettingsFragment extends Fragment {
         binding.btnLogout.setOnClickListener(v -> {
             settingsViewModel.logout();
             Toast.makeText(getContext(), "Logging out...", Toast.LENGTH_SHORT).show();
+        });
+
+
+        binding.onboardDeviceButton.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_onboarding);
         });
     }
 

@@ -22,6 +22,7 @@ android {
             props.load(propsFile.newDataInputStream())
         }
 
+        // Load the Cognito credentials from local.properties
         buildConfigField "String", "COGNITO_USER_POOL_ID", "\"${props.getProperty('COGNITO_USER_POOL_ID')}\""
         buildConfigField "String", "COGNITO_CLIENT_ID", "\"${props.getProperty('COGNITO_CLIENT_ID')}\""
     }

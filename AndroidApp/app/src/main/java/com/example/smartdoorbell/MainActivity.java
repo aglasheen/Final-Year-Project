@@ -160,14 +160,22 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(bottomNavigation, navController);
 
+        // Controller to hide or show the bottom nav menu based on current fragment
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.navigation_settings) {
+            int id = destination.getId();
+
+            // Screens that should not show the bottom navigation menu
+            boolean shouldHideNav = (id == R.id.navigation_settings || id == R.id.navigation_onboarding);
+
+            if (shouldHideNav) {
                 bottomNavigation.setVisibility(View.GONE);
             } else {
                 bottomNavigation.setVisibility(View.VISIBLE);
             }
         });
 
+
+        // Main navigation bar fragments
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home,
                 R.id.navigation_dashboard,
@@ -181,8 +189,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        // Seamless transition
-        overridePendingTransition(0, 0);
         finish();
     }
 
